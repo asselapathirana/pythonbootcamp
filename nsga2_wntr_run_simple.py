@@ -1,86 +1,79 @@
 import math
 import wntr
-from pb.nsgaII_helper.nsgaII_helper import NSGAII_run, Pareto, Bounder, plt
-import os
+from pb.nsgaII_helper.nsgaII_helper import NSGAII_run, update_graph
+from inspyred.ec.emo import Pareto  # Pack fitness values to this
+from inspyred.ec import Bounder  # Useful to specify variable boundaries
+import os # need this for file path handling
+import shutil # need to remove an entire directory
 
 
-NVARS = 10
-valrange=[.1, 1.0]
-outputd="output"
-
-
-if not os.path.exists(outputd):
-    os.makedirs(outputd)
-
-
-
-#initialize 
+valrange=[.1, 1.0] # range of each variables? 
+outputd="output" # directory to write output to 
 inpfile='Net1.inp'
-wn = wntr.network.WaterNetworkModel(inpfile) 
-orig_diam = [wn.get_link("11").diameter, 
-             wn.get_link("12").diameter, 
-             wn.get_link("111").diameter, 
-             wn.get_link("112").diameter, 
-             wn.get_link("113").diameter, 
-             wn.get_link("21").diameter, 
-             wn.get_link("22").diameter, 
-             wn.get_link("121").diameter, 
-             wn.get_link("122").diameter, 
-             wn.get_link("31").diameter, 
-             ]
-print("init done", orig_diam)
+# list pipe ids to change
+pipes_to_change = ['11', '12', '111', '112', '113', '21', '22', '121', '122', '31']
+NVARS = len(pipes_to_change) # how many variables do you want to change
 
-def mygenerator(random, args):
+
+if not os.path.exists(outputd): # create output directory if not there
+    os.makedirs(outputd)
+else:
+    filelist = [ ff for ff in os.listdir(outputd) ]
+    for fil in filelist:
+        os.remove(os.path.join(outputd, fil))    
+
+
+resfile='{0}{1}results.txt'.format(outputd,os.sep) 
+TBL="{:>10}{:>25} {:>25} {:>25}\n"
+with open(resfile, 'w+') as ff:
+    ff.write(TBL.format("Number","INP file", "Cost (US$/y)", "(1-ADF)"))
+
+wn = wntr.network.WaterNetworkModel(inpfile) 
+# keep the original diameters saved. 
+orig_diam = [wn.get_link(id).diameter for id in pipes_to_change] 
+
+def mygenerator(random, args): 
+    """Generator"""
     return [random.uniform(*valrange) for x in range(NVARS)]
 
 def evaluate(factors, number):
-    wn = wntr.network.WaterNetworkModel(inpfile) 
-    vals = [a*b for a,b in zip(factors, orig_diam)]
-    [wn.get_link("11").diameter, 
-                 wn.get_link("12").diameter, 
-                 wn.get_link("111").diameter, 
-                 wn.get_link("112").diameter, 
-                 wn.get_link("113").diameter, 
-                 wn.get_link("21").diameter, 
-                 wn.get_link("22").diameter, 
-                 wn.get_link("121").diameter, 
-                 wn.get_link("122").diameter, 
-                 wn.get_link("31").diameter, 
-                 ] = vals
+    """Given a list of diameters, how to calculate the two objective functions"""
+    wn = wntr.network.WaterNetworkModel(inpfile) # open the input file
+    # convert the variable to a diameter value
+    vals = [a*b for a,b in zip(factors, orig_diam)] 
+    # now change the diameters in the network. 
+    for id, diam in zip(pipes_to_change, vals):
+        wn.get_link(id).diameter=diam 
+    # now create a simulation using PDD mode
     sim = wntr.sim.WNTRSimulator(wn, mode='PDD')
-    results = sim.run_sim(solver_options=dict(MAXITER=500, TOL=1.e-4), convergence_error=True)
-    pressure = results.node['pressure']
-    pressure_threshold = 21.09 # 30 psi
-    expected_demand = wntr.metrics.expected_demand(wn)[wn.junction_name_list]
-    demand = results.node['demand'][wn.junction_name_list]
-    head = results.node['head']
-    pump_flowrate = results.link['flowrate'].loc[:,wn.pump_name_list]
-    wsa = demand.sum().sum()/expected_demand.sum().sum()
+    # slacken the convergence criteria a bit - to save some time
+    results = sim.run_sim(solver_options=dict(MAXITER=500, TOL=1.e-2), convergence_error=False)
+    if (results.error_code==2):
+            print ("\nHydrfaulic analysis failed to converge!\n")
+    # objective 1 is : annualized cost in US$/year
     cost = wntr.metrics.economic.annual_network_cost(wn)
     
+    expected_demand = wntr.metrics.expected_demand(wn)[wn.junction_name_list]
+    demand = results.node['demand'][wn.junction_name_list]
+    #objective 2 is 1-adf
+    adf = demand.sum().sum()/expected_demand.sum().sum()
+   
     # now save the files (so that we can examine them later too!)
     inpname='{0}{1}CANDIDATE_{2:03d}.inp'.format(outputd,os.sep,number)
-    resfile='{0}{1}CANDIDATE_{2:03d}.txt'.format(outputd,os.sep,number)    
     wn.write_inpfile(inpname)
-    with open(resfile,'w') as ff:
-        ff.write("Cost ($/y): {}, 1-ADF (-): {}".format(cost,1-wsa))
-    return cost, 1-wsa
+    # write objective values to the result file
+    with open(resfile,'a') as ff:
+        ff.write(TBL.format(number,inpname, "{:.9f}".format(cost), '{:.9f}'.format(1-adf)))
+    return cost, 1-adf
+
     
 
 def myevaluator(candidates, args):
     fitness = []
     for i,cc in enumerate(candidates):
-        fail = False
-        try:
-           
-            rr = evaluate(cc,i)
-        except Exception as e:
-            print ("\n______________________________________________\n"+str(e)+'\n__________________________________________\n')
-            fail=True
-        if fail or math.isnan(rr[0]) or math.isnan(rr[1]):
-            rr=[419929,1.0] # only 1-0.6 is lost to leakage and supply ratio is 0!! 
+        rr = evaluate(cc,i)
         fitness.append(Pareto(rr))
-        plt.pause(.1)
+        update_graph()
         print (rr, ": ", cc)
     return fitness
 
@@ -90,7 +83,7 @@ def main(prng=None, display=False):
     generator=mygenerator
     evaluator=myevaluator
     bounder=Bounder(*valrange)    
-    NSGAII_run(generator, evaluator, bounder, prng, maximize=False, pop_size=4, max_generations=100, display=True)
+    NSGAII_run(generator, evaluator, bounder, prng, maximize=False, pop_size=4, max_generations=10, display=True)
 
 
 if __name__ == '__main__':

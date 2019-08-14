@@ -9,14 +9,14 @@ import inspyred
 from inspyred.ec.emo import Pareto
 from inspyred.ec import Bounder
 
-"""How to run a simple 2 objective function optimization with NSGA-II algoritm. 
+"""How to run a simple 2 objective function optimization with NSGA-II algorithm. 
    1. Simplified entrypoint to inspyred library's relevent classes/functions
    2. Simple  graphing system to monitor progress
    
 Example code: 
 
 Following code runs the Kursawe(3) problem of minimization. For clarity, all the necessary elements 
-(e.g. geneator, evaluator, etc) are reproduced here (mygenerator etc.) rather than calling from the inspyred library. 
+(e.g. generator, evaluator, etc) are reproduced here (mygenerator etc.) rather than calling from the inspyred library. 
 
 import math
 from pb.nsgaII_helper.nsgaII_helper import NSGAII_run
@@ -72,7 +72,9 @@ if __name__ == "__main__":
 
 """
 
-inspyred.benchmarks.Kursawe
+def update_graph():
+    """This is needed to give a graph a 'breather' during heavy calculations. It will reduce the graph freezing."""
+    plt.pause(.1)
 
 def NSGAII_run(
     generator,
