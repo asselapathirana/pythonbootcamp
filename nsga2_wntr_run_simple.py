@@ -2,35 +2,33 @@ import math
 import wntr
 from pb.nsgaII_helper.nsgaII_helper import NSGAII_run, update_graph
 from inspyred.ec.emo import Pareto  # Pack fitness values to this
-from inspyred.ec import Bounder  # Useful to specify variable boundaries
 import os # need this for file path handling
 import shutil # need to remove an entire directory
 
-
+# Following are GLOBAL variables. 
+# It is not a good practice to have too many global variables 
+# In fact good program design allows to avoid them (almost) fully. 
 valrange=[.1, 1.0] # range of each variables? 
 outputd="output" # directory to write output to 
 inpfile='Net1.inp'
-# list pipe ids to change
+# list ids of pipes to change
 pipes_to_change = ['11', '12', '111', '112', '113', '21', '22', '121', '122', '31']
 NVARS = len(pipes_to_change) # how many variables do you want to change
 
+resfile='{0}{1}results.txt'.format(outputd,os.sep) # results file
+TBL="{:>10}{:>25} {:>25} {:>25}\n" # nice printing
+# original diameters of the pipes
+orig_diam = [wntr.network.WaterNetworkModel(inpfile).get_link(id).diameter for id in pipes_to_change] 
+# end of GLOBAL variables 
 
-if not os.path.exists(outputd): # create output directory if not there
-    os.makedirs(outputd)
-else:
-    filelist = [ ff for ff in os.listdir(outputd) ]
-    for fil in filelist:
-        os.remove(os.path.join(outputd, fil))    
+def clean():
+    if not os.path.exists(outputd): # create output directory if not there
+        os.makedirs(outputd)
+    else:
+        filelist = [ ff for ff in os.listdir(outputd) ]
+        for fil in filelist:
+            os.remove(os.path.join(outputd, fil))    
 
-
-resfile='{0}{1}results.txt'.format(outputd,os.sep) 
-TBL="{:>10}{:>25} {:>25} {:>25}\n"
-with open(resfile, 'w+') as ff:
-    ff.write(TBL.format("Number","INP file", "Cost (US$/y)", "(1-ADF)"))
-
-wn = wntr.network.WaterNetworkModel(inpfile) 
-# keep the original diameters saved. 
-orig_diam = [wn.get_link(id).diameter for id in pipes_to_change] 
 
 def mygenerator(random, args): 
     """Generator"""
@@ -77,13 +75,23 @@ def myevaluator(candidates, args):
         print (rr, ": ", cc)
     return fitness
 
+def mybounder(candidate, args):
+    for ii in range(len(candidate)): # each diameter value
+        # if value is less than lower bound make it = lowerbound
+        # if value is greater than upper bound make it = upperbound
+        candidate[ii]=min(max(candidate[ii], valrange[0]), valrange[1]) 
+    return candidate
+
+def write_heading():
+    # write heading for results file
+    with open(resfile, 'w+') as ff:
+        ff.write(TBL.format("Number","INP file", "Cost (US$/y)", "(1-ADF)"))    
 
 def main(prng=None, display=False):
-    # custom problem
-    generator=mygenerator
-    evaluator=myevaluator
-    bounder=Bounder(*valrange)    
-    NSGAII_run(generator, evaluator, bounder, prng, maximize=False, pop_size=4, max_generations=10, display=True)
+    clean()
+    write_heading()
+    # run! 
+    NSGAII_run(generator=mygenerator, evaluator=myevaluator, bounder=mybounder, prng=prng, maximize=False, pop_size=4, max_generations=10, display=True)
 
 
 if __name__ == '__main__':

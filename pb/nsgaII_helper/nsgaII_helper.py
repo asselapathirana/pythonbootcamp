@@ -21,7 +21,6 @@ Following code runs the Kursawe(3) problem of minimization. For clarity, all the
 import math
 from pb.nsgaII_helper.nsgaII_helper import NSGAII_run
 from inspyred.ec.emo import Pareto  # Pack fitness values to this
-from inspyred.ec import Bounder  # Useful to specify variable boundaries
 
 
 def mygenerator(random, args):
@@ -31,7 +30,6 @@ def mygenerator(random, args):
 
 
 def myevaluator(candidates, args):
-    
     fitness = []
     for cc in candidates:
         f1 = sum(
@@ -49,11 +47,15 @@ def myevaluator(candidates, args):
         fitness
     )  # return fitness which is the  set fitness values for all candidates.
 
+def mybounder(candidate, args):
+    for ii in range(len(candidate)): # each diameter value
+        # if value is less than lower bound make it = lowerbound
+        # if value is greater than upper bound make it = upperbound
+        candidate[ii]=min(max(candidate[ii], -5.0), 5.0) 
+    return candidate
+
 
 def main():
-    mybounder = Bounder(
-        [-5.0, -5.0, -5.0], [5.0, 5.0, 5.0]
-    )  # each variable x1, x2, x3 can have valid values from -5 to 5
     # now run the optimizer
     NSGAII_run(
         generator=mygenerator,
@@ -62,13 +64,14 @@ def main():
         prng=None,
         maximize=False,
         pop_size=100,
-        max_generations=10,
+        max_generations=100,
         display=True,
     )
 
 
 if __name__ == "__main__":
     main()
+
 
 """
 
