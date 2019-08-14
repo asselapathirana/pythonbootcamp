@@ -34,7 +34,7 @@ import shutil # need to remove an entire directory
 # In fact good program design allows to avoid them (almost) fully. 
 valrange=[.1, 1.0] # range of each variables? 
 outputd="output" # directory to write output to 
-inpfile='Net1.inp'
+inpfile='./data/Net1.inp'
 # list ids of pipes to change
 pipes_to_change = ['11', '12', '111', '112', '113', '21', '22', '121', '122', '31']
 NVARS = len(pipes_to_change) # how many variables do you want to change

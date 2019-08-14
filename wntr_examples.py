@@ -2,7 +2,7 @@ import numpy as np
 import wntr
 
 
-inp_filename = 'Net3LPS.inp'
+inp_filename = './data/Net3LPS.inp'
 
 wn = wntr.network.WaterNetworkModel(inp_filename) 
 sim = wntr.sim.WNTRSimulator(wn, mode='PDD')
