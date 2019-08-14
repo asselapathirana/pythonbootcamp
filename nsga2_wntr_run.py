@@ -2,7 +2,7 @@ from random import Random
 from time import time
 import math
 
-from pb.nsgaII_helper.nsgaII_helper import graph, nsgaII, Pareto, Bounder, plt
+from pb.nsgaII_helper.nsgaII_helper import _graph_monitor, nsgaII, Pareto, Bounder, plt
 from pb.wntr import  simulate_with_leakage as sl
 
 NVARS = 5

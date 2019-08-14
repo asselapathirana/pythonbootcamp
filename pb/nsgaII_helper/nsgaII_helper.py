@@ -1,19 +1,29 @@
-import matplotlib
-from time import time
-matplotlib.use("QT5Agg")
-import matplotlib.pyplot as plt
-import numpy as np
-import math
-from random import Random
-import inspyred
-from inspyred.ec.emo import Pareto
-from inspyred.ec import Bounder
-
-"""How to run a simple 2 objective function optimization with NSGA-II algorithm. 
-   1. Simplified entrypoint to inspyred library's relevent classes/functions
-   2. Simple  graphing system to monitor progress
+"""
+    ===============================================
+    How to run a simple 2 objective function optimization with NSGA-II algorithm. 
+       1. Simplified entrypoint to inspyred library's relevent classes/functions
+       2. Simple  graphing system to monitor progress
+    ===============================================
    
-Example code: 
+   .. Copyright 2019 Assela Pathirana
+
+    .. This program is free software: you can redistribute it and/or modify
+       it under the terms of the GNU General Public License as published by
+       the Free Software Foundation, either version 3 of the License, or
+       (at your option) any later version.
+
+    .. This program is distributed in the hope that it will be useful,
+       but WITHOUT ANY WARRANTY; without even the implied warranty of
+       MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+       GNU General Public License for more details.
+
+    .. You should have received a copy of the GNU General Public License
+       along with this program.  If not, see <http://www.gnu.org/licenses/>.
+       
+    .. author:: Assela Pathirana <assela@pathirana.net>
+    
+    
+Example code::
 
 Following code runs the Kursawe(3) problem of minimization. For clarity, all the necessary elements 
 (e.g. generator, evaluator, etc) are reproduced here (mygenerator etc.) rather than calling from the inspyred library. 
@@ -71,9 +81,20 @@ def main():
 
 if __name__ == "__main__":
     main()
-
-
+    
 """
+
+import matplotlib
+from time import time
+matplotlib.use("QT5Agg")
+import matplotlib.pyplot as plt
+import numpy as np
+import math
+from random import Random
+import inspyred
+from inspyred.ec.emo import Pareto
+from inspyred.ec import Bounder
+
 
 def update_graph():
     """This is needed to give a graph a 'breather' during heavy calculations. It will reduce the graph freezing."""
@@ -100,10 +121,10 @@ def NSGAII_run(
     ]
     ea.terminator = inspyred.ec.terminators.generation_termination
     if display:
-        gr = graph()
+        monitor = _graph_monitor()
     else:
-        gr = text()
-    ea.observer = gr.nsgaII_observer
+        monitor = _text_monitor()
+    ea.observer = monitor.nsgaII_observer
     ea.evolve(
         generator=generator,
         evaluator=evaluator,
@@ -113,16 +134,17 @@ def NSGAII_run(
         max_generations=max_generations,
     )
     if display:
-        gr.persist()
+        monitor.persist()
         
 
-class text():
+class _text_monitor():
     
     def nsgaII_observer(self, population, num_generations, num_evaluations, args):
         print ("N={}: {}".format(num_evaluations, population))
 
 
-class graph:
+class _graph_monitor:
+    """A graph to monitor NSGAII progress"""
     def __init__(self):
         self.figure = plt.figure()
         ax = self.figure.add_subplot(111)
