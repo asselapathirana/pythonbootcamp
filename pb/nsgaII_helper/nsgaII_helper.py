@@ -1,8 +1,6 @@
 """
     ===============================================
-    How to run a simple 2 objective function optimization with NSGA-II algorithm. 
-       1. Simplified entrypoint to inspyred library's relevent classes/functions
-       2. Simple  graphing system to monitor progress
+    Helper module to run NSGAII algorithm of inspyred
     ===============================================
    
    .. Copyright 2019 Assela Pathirana

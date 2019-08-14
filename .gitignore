@@ -1,6 +1,9 @@
 # project specific details
 output/
 temp/
+junk/
+pickle/
+*.wp?
 # Byte-compiled / optimized / DLL files
 __pycache__/
 *.py[cod]
