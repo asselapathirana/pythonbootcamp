@@ -110,9 +110,32 @@ data.drop(columns=["YYYYMMDD", "HH", "# STN"], inplace=True)
 
 # Read the header of the data, many columns are represented by 0.1 units (e.g. rainfall .1 mm units). So before using the data any further
 # it is needed to multiply them by the correct scale factor (often .1)
+# FH       = Uurgemiddelde windsnelheid (in 0.1 m/s). Zie http://www.knmi.nl/kennis-en-datacentrum/achtergrond/klimatologische-brochures-en-boeken; 
+# FF       = Windsnelheid (in 0.1 m/s) gemiddeld over de laatste 10 minuten van het afgelopen uur; 
+# FX       = Hoogste windstoot (in 0.1 m/s) over het afgelopen uurvak; 
+# T        = Temperatuur (in 0.1 graden Celsius) op 1.50 m hoogte tijdens de waarneming; 
+# T10N     = Minimumtemperatuur (in 0.1 graden Celsius) op 10 cm hoogte in de afgelopen 6 uur; 
+# TD       = Dauwpuntstemperatuur (in 0.1 graden Celsius) op 1.50 m hoogte tijdens de waarneming; 
+# SQ       = Duur van de zonneschijn (in 0.1 uren) per uurvak, berekend uit globale straling  (-1 for <0.05 uur); 
+# Q        = Globale straling (in J/cm2) per uurvak; 
+# DR       = Duur van de neerslag (in 0.1 uur) per uurvak; 
+# RH       = Uursom van de neerslag (in 0.1 mm) (-1 voor <0.05 mm); 
+# P        = Luchtdruk (in 0.1 hPa) herleid naar zeeniveau, tijdens de waarneming;
+data["FF"] = data["FF"] * 0.1
+data["FX"] = data["FX"] * 0.1
 data["T"] = data["T"] * 0.1
-#
+data["T10"] = data["T10"] * 0.1
+data["SQ"] = data["SQ"].clip(lower=0.0) * 0.1
+data["DR"] = data["DR"] * 0.1
 data["RH"] = data["RH"].clip(lower=0.0) * 0.1
+data["P"] = data["P"] * 0.1
+#
+
+# save the data so that we can use it later (with other scripts)
+
+data.to_pickle(datafile+".pickle", compression='zip')
+
+
 
 
 # resample data annually and plot
