@@ -41,8 +41,9 @@ sns.set(
 missing_values = ["n/a", "-99", "...", ".../..."]
 
 # now read data
+datafile = "./data/country_profile_variables.csv"
 countries = pd.read_csv(
-    "./data/country_profile_variables.csv", na_values=missing_values
+    datafile, na_values=missing_values
 )
 # The column names of this dataset is really long.
 # So we assin them to variables so that our code can be shorter
@@ -60,6 +61,9 @@ countries.dropna(subset=[LEX_], inplace=True)
 temp = countries[LEX_].str.split("/", n=1, expand=True)
 # assing mean value of these two series to LEX
 countries[LEX] = (temp[0].astype(float) + temp[1].astype(float)) / 2.0
+
+# save this data for later use
+countries.to_pickle(datafile+".pickle")
 
 
 # we are going to use HTE='Health: Total expenditure (% of GDP)' as a color in the plot.
