@@ -26,6 +26,10 @@ But my preferred (largely due to long-term use) IDE is the [Wing IDE](https://wi
 3. Open Wing IDE
 4. When it askes for a license, ask me and I'll provide you with the classroom license. 
 
+*Note for seasoned users:*
+I interchangably use both Wing IDE and Spyder depending on my programming task. If I am doing some data exploration or other 'exploraroty' type coding, then Spyder with its Iorn Python interpreter works better for me. One the other hand, for a more involved, strtucred programming project (A software tool, a model or a web application) my go-to tool is Wing IDE (with python shell). This latter choice is largely influenced by the better debugging tools. 
+
+
 ### Tutorials and Courses
 First off, I highly recommend the method of on-demand, web-search based learning. I will follow this 'method' during my classes. Of course you need some 'tutorial' type guidance in teh very beginning. But in my opinion the sooner you wean yourself from that the better! 
 
