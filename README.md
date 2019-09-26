@@ -31,10 +31,10 @@ First off, I highly recommend the method of on-demand, web-search based learning
 
 Having said that, if you need a structured course/tutorail type intruactions here are some resources (As of the time of writing, these resources were free):
 
-1. 
+4. [A Byte of Python](https://python.swaroopch.com/)
 1. [Python Core and Advanced](https://www.udemy.com/course/python-core-and-advanced/?LSNPUBID=JVFxdTr9V80&ranEAID=JVFxdTr9V80&ranMID=39197&ranSiteID=JVFxdTr9V80-QgFk4H_8XApN.Ntg.67Bww)
 2. [Programming with Python: Hands-On Introduction for Beginners](https://www.udemy.com/course/python-programming-beginners/?LSNPUBID=JVFxdTr9V80&ranEAID=JVFxdTr9V80&ranMID=39197&ranSiteID=JVFxdTr9V80-ES3wH8.LbVQkJmOgTTloyA)
 3. [Learn Python 3.6 for Total Beginners](https://www.udemy.com/course/python-3-for-total-beginners/?LSNPUBID=JVFxdTr9V80&ranEAID=JVFxdTr9V80&ranMID=39197&ranSiteID=JVFxdTr9V80-fTrDC4an8C6VBGoPIxrpOg)
-4. [A Byte of Python](https://python.swaroopch.com/)
+
 
 
