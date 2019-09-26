@@ -27,7 +27,7 @@ But my preferred (largely due to long-term use) IDE is the [Wing IDE](https://wi
 4. When it askes for a license, ask me and I'll provide you with the classroom license. 
 
 ### Tutorials and Courses
-First off, I highly recommend the method of on-demand, web-search based learning. Of course you need some 'tutorial' type guidance in teh very beginning. But in my opinion the sooner you wean yourself from that the better! 
+First off, I highly recommend the method of on-demand, web-search based learning. I will follow this 'method' during my classes. Of course you need some 'tutorial' type guidance in teh very beginning. But in my opinion the sooner you wean yourself from that the better! 
 
 Having said that, if you need a structured course/tutorail type intruactions here are some resources (As of the time of writing, these resources were free):
 
