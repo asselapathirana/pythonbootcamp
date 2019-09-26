@@ -3,8 +3,8 @@ This repo provides some of the code, data and information used during the Python
 
 ## Inspiration
 Some python products that may inspire you to learn the lanauge
-1. Python web applications: https://simplemaps.com/data/world-cities
-2. 
+1. Python web applications that I have developed: https://assela.pathirana.net/index.php?title=Webapps_with_python
+2. Python web applications 
 
 ## Installation
 ### Python
@@ -25,4 +25,16 @@ But my preferred (largely due to long-term use) IDE is the [Wing IDE](https://wi
 2. Install the software. 
 3. Open Wing IDE
 4. When it askes for a license, ask me and I'll provide you with the classroom license. 
+
+### Tutorials and Courses
+First off, I highly recommend the method of on-demand, web-search based learning. Of course you need some 'tutorial' type guidance in teh very beginning. But in my opinion the sooner you wean yourself from that the better! 
+
+Having said that, if you need a structured course/tutorail type intruactions here are some resources (As of the time of writing, these resources were free):
+
+1. 
+1. [Python Core and Advanced](https://www.udemy.com/course/python-core-and-advanced/?LSNPUBID=JVFxdTr9V80&ranEAID=JVFxdTr9V80&ranMID=39197&ranSiteID=JVFxdTr9V80-QgFk4H_8XApN.Ntg.67Bww)
+2. [Programming with Python: Hands-On Introduction for Beginners](https://www.udemy.com/course/python-programming-beginners/?LSNPUBID=JVFxdTr9V80&ranEAID=JVFxdTr9V80&ranMID=39197&ranSiteID=JVFxdTr9V80-ES3wH8.LbVQkJmOgTTloyA)
+3. [Learn Python 3.6 for Total Beginners](https://www.udemy.com/course/python-3-for-total-beginners/?LSNPUBID=JVFxdTr9V80&ranEAID=JVFxdTr9V80&ranMID=39197&ranSiteID=JVFxdTr9V80-fTrDC4an8C6VBGoPIxrpOg)
+4. [A Byte of Python](https://python.swaroopch.com/)
+
 
