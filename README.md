@@ -40,5 +40,9 @@ Having said that, if you need a structured course/tutorail type intruactions her
 2. [Programming with Python: Hands-On Introduction for Beginners](https://www.udemy.com/course/python-programming-beginners/?LSNPUBID=JVFxdTr9V80&ranEAID=JVFxdTr9V80&ranMID=39197&ranSiteID=JVFxdTr9V80-ES3wH8.LbVQkJmOgTTloyA)
 3. [Learn Python 3.6 for Total Beginners](https://www.udemy.com/course/python-3-for-total-beginners/?LSNPUBID=JVFxdTr9V80&ranEAID=JVFxdTr9V80&ranMID=39197&ranSiteID=JVFxdTr9V80-fTrDC4an8C6VBGoPIxrpOg)
 
+### Background
+1. Early yaers of python: https://www.youtube.com/watch?v=xLVxoz-mQFs
+
+
 
 
