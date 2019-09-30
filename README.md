@@ -4,7 +4,8 @@ This repo provides some of the code, data and information used during the Python
 ## Inspiration
 Some python products that may inspire you to learn the lanauge
 1. Python web applications that I have developed: https://assela.pathirana.net/index.php?title=Webapps_with_python
-2. Python web applications 
+2. Python can be used to create, publication-ready, informative and nice-looking graphs: https://python-graph-gallery.com/
+
 
 ## Installation
 ### Python
