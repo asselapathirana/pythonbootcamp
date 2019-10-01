@@ -72,6 +72,10 @@ import wget
 import pandas as pd
 import matplotlib.pyplot as plt
 
+# we need a directory 'data' to run this program. so, if it is not there, create it. 
+if not os.path.exists('data'):
+    os.makedirs('data')
+
 
 # name of the zip file with data
 datafile = "./data/KNMI_20190815_hourly.zip"

@@ -4,6 +4,7 @@ temp/
 junk/
 *pickle
 *.wp?
+
 # Byte-compiled / optimized / DLL files
 __pycache__/
 *.py[cod]
@@ -111,7 +112,7 @@ venv/
 ENV/
 env.bak/
 venv.bak/
-
+2019 Python for Urban Water Systems.xls
 # Spyder project settings
 .spyderproject
 .spyproject
@@ -129,4 +130,6 @@ dmypy.json
 
 # Pyre type checker
 .pyre/
-
+2019 Python for Urban Water Systems.xls
+n for Urban Water Systems.xls
+kkkkkkkkkkkkkkkkkkkkk
