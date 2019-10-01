@@ -113,6 +113,7 @@ ENV/
 env.bak/
 venv.bak/
 2019 Python for Urban Water Systems.xls
+data/sst.nc
 # Spyder project settings
 .spyderproject
 .spyproject
