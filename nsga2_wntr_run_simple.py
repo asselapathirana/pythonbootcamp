@@ -3,6 +3,16 @@
     A prototype example of running multi(two)-objective optimization problem using 
    wntr and inspyred libraries
     ===============================================
+    
+    This example is a design problem and claculates the relationship betweek 
+    (1-ADF), i.e., impact on supply and cost of pipes. 
+        In a given water distribution network, change specified pipes
+        
+        - for cost we use wntr.metrics.economic.annual_network_cost() function
+        without any changes
+        - for ADF we use the ratio: total demand in the system 
+        (in the junction list) over expected demand (wntr.metrics.expected_demand) 
+    
    
    .. Copyright 2019 Assela Pathirana
 
@@ -22,12 +32,10 @@
     .. author:: Assela Pathirana <assela@pathirana.net>
 """
    
-import math
 import wntr
 from pb.nsgaII_helper.nsgaII_helper import NSGAII_run, update_graph
 from inspyred.ec.emo import Pareto  # Pack fitness values to this
 import os # need this for file path handling
-import shutil # need to remove an entire directory
 
 # Following are GLOBAL variables. 
 # It is not a good practice to have too many global variables 
@@ -46,6 +54,7 @@ orig_diam = [wntr.network.WaterNetworkModel(inpfile).get_link(id).diameter for i
 # end of GLOBAL variables 
 
 def clean():
+    """ Clean up the directory by deleting any existing output files"""
     if not os.path.exists(outputd): # create output directory if not there
         os.makedirs(outputd)
     else:
