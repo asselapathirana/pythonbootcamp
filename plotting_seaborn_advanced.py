@@ -1,3 +1,10 @@
+# -*- coding: utf-8 -*-
+"""
+Created on Tue Oct  1 16:42:11 2019
+
+@author: apa
+"""
+
 """
     ===============================================
     A bit advanced example of plotting data with seaborn
