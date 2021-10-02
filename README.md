@@ -1,4 +1,4 @@
-# Python Bootcamp 2021
+# Python Bootcamp :  2021 run
 This repo provides some of the code, data and information used during the Python Bootcamp, the course I run every year at IHE-Delft. 
 
 ## Inspiration
@@ -19,7 +19,7 @@ As of 2021 we use Python 3.9. Please download the appropriate WinPyton distribut
 3. Direct it to an installation directory (e.g. `C:\Python\`)
 4. Complete the installation.
 
-### Anaconda is there!
+### But, Anaconda is there, right?
 As of 2021, some of the IHE computers (all of them?) have Anaconda Python distribution installed. You may ask: Why don't we use that? You may. But I prefer to 'officially' use win python in this course. (There are good reasons to do so, we can discuss in the class.) If you know what you are doing, you can also use Anaconda. But to keep things simple, I don't plan to provide help on doing so. Basically you are on your own. 
 
 ### Development Environment
