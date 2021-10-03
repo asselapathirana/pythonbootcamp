@@ -3,8 +3,8 @@ This repo provides some of the code, data and information used during the Python
 
 ## Inspiration
 Some python products that may inspire you to learn the language
-1. Python web applications that I have developed: https://assela.pathirana.net/index.php?title=Webapps_with_python
-2. Python can be used to create, publication-ready, informative and nice-looking graphs: https://python-graph-gallery.com/
+1. Python web applications that I have developed: [https://assela.pathirana.net/index.php?title=Webapps_with_python](https://assela.pathirana.net/index.php?title=Webapps_with_python)
+2. Python can be used to create, publication-ready, informative and nice-looking graphs: [https://python-graph-gallery.com/](https://python-graph-gallery.com/)
 
 
 ## Installation
@@ -42,7 +42,7 @@ Having said that, if you need a structured course/tutorial type instructions her
 3. [Learn Python 3.6 for Total Beginners](https://www.udemy.com/course/python-3-for-total-beginners/?LSNPUBID=JVFxdTr9V80&ranEAID=JVFxdTr9V80&ranMID=39197&ranSiteID=JVFxdTr9V80-fTrDC4an8C6VBGoPIxrpOg)
 
 ### Background
-1. Early years of python: https://www.youtube.com/watch?v=xLVxoz-mQFs
+1. Early years of python: [https://www.youtube.com/watch?v=xLVxoz-mQFs](https://www.youtube.com/watch?v=xLVxoz-mQFs)
 
 
 
