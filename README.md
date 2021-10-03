@@ -36,6 +36,7 @@ First off, I highly recommend the method of on-demand, web-search based learning
 
 Having said that, if you need a structured course/tutorial type instructions here are some resources (As of the time of writing, these resources were free):
 
+1. [Python from the Very Beginning](https://coherentpdf.com/python/index.html)
 1. [A Byte of Python](https://python.swaroopch.com/)
 2. [Python Core and Advanced](https://www.udemy.com/course/python-core-and-advanced/?LSNPUBID=JVFxdTr9V80&ranEAID=JVFxdTr9V80&ranMID=39197&ranSiteID=JVFxdTr9V80-QgFk4H_8XApN.Ntg.67Bww)
 3. [Programming with Python: Hands-On Introduction for Beginners](https://www.udemy.com/course/python-programming-beginners/?LSNPUBID=JVFxdTr9V80&ranEAID=JVFxdTr9V80&ranMID=39197&ranSiteID=JVFxdTr9V80-ES3wH8.LbVQkJmOgTTloyA)
