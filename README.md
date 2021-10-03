@@ -41,7 +41,7 @@ Having said that, if you need a structured course/tutorial type instructions her
 2. [Python Core and Advanced](https://www.udemy.com/course/python-core-and-advanced/?LSNPUBID=JVFxdTr9V80&ranEAID=JVFxdTr9V80&ranMID=39197&ranSiteID=JVFxdTr9V80-QgFk4H_8XApN.Ntg.67Bww)
 3. [Programming with Python: Hands-On Introduction for Beginners](https://www.udemy.com/course/python-programming-beginners/?LSNPUBID=JVFxdTr9V80&ranEAID=JVFxdTr9V80&ranMID=39197&ranSiteID=JVFxdTr9V80-ES3wH8.LbVQkJmOgTTloyA)
 4. [Learn Python 3.6 for Total Beginners](https://www.udemy.com/course/python-3-for-total-beginners/?LSNPUBID=JVFxdTr9V80&ranEAID=JVFxdTr9V80&ranMID=39197&ranSiteID=JVFxdTr9V80-fTrDC4an8C6VBGoPIxrpOg)
-5. [Learn Python 3 From Scratch | Python for Absolute Beginners](https://www.udemy.com/course/learn-python-3-from-scratch-python-for-absolute-beginners/)
+5. [Learn Python 3 From Scratch -- Python for Absolute Beginners](https://www.udemy.com/course/learn-python-3-from-scratch-python-for-absolute-beginners/)
 
 #### And after you finish this course
 
