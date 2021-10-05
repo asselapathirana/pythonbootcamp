@@ -1,3 +1,8 @@
+"""
+Find the maximum 24h rainfall from a hourly record. 
+Using just plain python (no fancy libraries!)
+"""
+
 with open('data/funabashi_rainfall.txt') as f:
     count = 0
     sum = 0
