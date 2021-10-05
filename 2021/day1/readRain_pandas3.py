@@ -6,6 +6,7 @@ Created on Mon Oct  4 15:58:50 2021
 """
 
 import pandas as pd
+from matplotlib import pyplot as plt
 
 rts = pd.read_csv("./data/funabashi_rainfall.txt", delimiter="\t",
                   names=["date", "rainfall"],
@@ -15,3 +16,4 @@ rts = pd.read_csv("./data/funabashi_rainfall.txt", delimiter="\t",
 rts.plot() 
 rts_y=rts.resample("Y").sum()
 rts_y.plot()
+plt.show()
