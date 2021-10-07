@@ -1,0 +1,158 @@
+[TITLE]
+
+[OPTIONS]
+FLOW_UNITS           CMS
+INFILTRATION         CURVE_NUMBER
+FLOW_ROUTING         DYNWAVE
+START_DATE           05/18/2011
+START_TIME           00:00:00
+REPORT_START_DATE    05/18/2011
+REPORT_START_TIME    00:00:00
+END_DATE             05/18/2011
+END_TIME             03:00:00
+SWEEP_START          01/01
+SWEEP_END            12/31
+DRY_DAYS             0
+REPORT_STEP          00:05:00
+WET_STEP             00:01:00
+DRY_STEP             00:01:00
+ROUTING_STEP         0:00:01 
+ALLOW_PONDING        NO
+INERTIAL_DAMPING     PARTIAL
+VARIABLE_STEP        0.75
+LENGTHENING_STEP     0
+MIN_SURFAREA         0
+NORMAL_FLOW_LIMITED  BOTH
+SKIP_STEADY_STATE    NO
+FORCE_MAIN_EQUATION  H-W
+LINK_OFFSETS         DEPTH
+MIN_SLOPE            0
+
+[EVAPORATION]
+;;Type       Parameters
+;;---------- ----------
+CONSTANT     0.0
+
+[RAINGAGES]
+;;               Rain      Time   Snow   Data      
+;;Name           Type      Intrvl Catch  Source    
+;;-------------- --------- ------ ------ ----------
+Gage1            VOLUME    0:15   1.0    TIMESERIES Rainfall        
+
+[SUBCATCHMENTS]
+;;                                                 Total    Pcnt.             Pcnt.    Curb     Snow    
+;;Name           Raingage         Outlet           Area     Imperv   Width    Slope    Length   Pack    
+;;-------------- ---------------- ---------------- -------- -------- -------- -------- -------- --------
+A1               Gage1            N1               1        60       40       2        0                        
+A2               Gage1            N2               .68      75       20       2        0                        
+A3               Gage1            N3               .28      90       20       2        0                        
+
+[SUBAREAS]
+;;Subcatchment   N-Imperv   N-Perv     S-Imperv   S-Perv     PctZero    RouteTo    PctRouted 
+;;-------------- ---------- ---------- ---------- ---------- ---------- ---------- ----------
+A1               0.01       0.1        0.05       0.05       25         OUTLET    
+A2               0.01       0.1        0.05       0.05       25         OUTLET    
+A3               0.01       0.1        0.05       0.05       25         OUTLET    
+
+[INFILTRATION]
+;;Subcatchment   CurveNum   HydCon     DryTime   
+;;-------------- ---------- ---------- ----------
+A1               81         0.5        7         
+A2               81         0.5        7         
+A3               83         0.5        7         
+
+[JUNCTIONS]
+;;               Invert     Max.       Init.      Surcharge  Ponded    
+;;Name           Elev.      Depth      Depth      Depth      Area      
+;;-------------- ---------- ---------- ---------- ---------- ----------
+N1               18.2       1.8        0          0          0         
+N2               18.0       1.8        0          0          0         
+N3               17.159     1.8        0          0          0         
+
+[OUTFALLS]
+;;               Invert     Outfall    Stage/Table      Tide
+;;Name           Elev.      Type       Time Series      Gate
+;;-------------- ---------- ---------- ---------------- ----
+1                17         FREE                        NO
+
+[CONDUITS]
+;;               Inlet            Outlet                      Manning    Inlet      Outlet     Init.      Max.      
+;;Name           Node             Node             Length     N          Offset     Offset     Flow       Flow      
+;;-------------- ---------------- ---------------- ---------- ---------- ---------- ---------- ---------- ----------
+LO1              N1               N2               28.3       0.01       0          0          0          0         
+LO2              N2               N3               20         0.01       0          .2         0          0         
+LO3              N3               1                20         0.01       0          0          0          0         
+
+[XSECTIONS]
+;;Link           Shape        Geom1            Geom2      Geom3      Geom4      Barrels   
+;;-------------- ------------ ---------------- ---------- ---------- ---------- ----------
+LO1              CIRCULAR     .2               0          0          0          1                    
+LO2              CIRCULAR     .8               0          0          0          1                    
+LO3              CIRCULAR     1.0              0          0          0          1                    
+
+[LOSSES]
+;;Link           Inlet      Outlet     Average    Flap Gate 
+;;-------------- ---------- ---------- ---------- ----------
+
+[TIMESERIES]
+;;Name           Date       Time       Value     
+;;-------------- ---------- ---------- ----------
+Rainfall                    0:0        0         
+Rainfall                    0:15       2.52      
+Rainfall                    0:30       14.28     
+Rainfall                    0:45       24.4      
+Rainfall                    1:00       81.24     
+Rainfall                    1:15       66.16     
+Rainfall                    1:30       22.76     
+Rainfall                    1:45       13.72     
+Rainfall                    2:00       9.80      
+
+[REPORT]
+INPUT      NO
+CONTROLS   NO
+SUBCATCHMENTS ALL
+NODES ALL
+LINKS ALL
+
+[TAGS]
+
+[MAP]
+DIMENSIONS 0.000 0.000 10000.000 10000.000
+Units      None
+
+[COORDINATES]
+;;Node           X-Coord            Y-Coord           
+;;-------------- ------------------ ------------------
+N1               6173.121           6423.690          
+N2               6788.155           4783.599          
+N3               7107.062           3302.961          
+1                7312.073           1845.103          
+
+[VERTICES]
+;;Link           X-Coord            Y-Coord           
+;;-------------- ------------------ ------------------
+
+[Polygons]
+;;Subcatchment   X-Coord            Y-Coord           
+;;-------------- ------------------ ------------------
+A1               660.592            8997.722          
+A1               660.592            4829.157          
+A1               4487.472           4829.157          
+A1               4464.692           9043.280          
+A1               546.697            9043.280          
+A2               713.743            3952.164          
+A2               5223.994           3929.385          
+A2               5223.994           9054.670          
+A2               4586.181           9054.670          
+A2               4631.739           4726.651          
+A2               668.185            4681.093          
+A3               820.046            2870.159          
+A3               5239.180           2847.380          
+A3               5216.401           3712.984          
+A3               728.929            3712.984          
+
+[SYMBOLS]
+;;Gage           X-Coord            Y-Coord           
+;;-------------- ------------------ ------------------
+Gage1            6742.597           9453.303          
+
