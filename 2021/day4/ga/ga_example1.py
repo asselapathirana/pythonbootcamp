@@ -24,14 +24,28 @@ def evaluate(candidates, args):
         fitness.append(fit)
     return fitness
 
+def set_simulation(cs):
+    """
+    This function will take an indivisual cs as argument. 
+    First it will open the network in wntr
+    set the network to pdd
+    set diamters based on cs
+    return the network
+    """
+    # first open the network 
+    mywn = wntr.network.WaterNetworkModel(network) 
+    mywn.options.hydraulic.demand_model = 'PDD'
+    #  set the diameters
+    for x,y in zip(ids, cs):
+        mywn.get_link(x).diameter=y
+    return mywn
+
 def calculate_fitness(cs):
     fit = sum( [ x*y*50 for x,y in zip(cs,lens)])
-    # first set the diameters
-    for x,y in zip(ids, cs):
-        wn.get_link(x).diameter=y
+    mywn=set_simulation(cs)
     # then try to run the model 
     try:
-        sim = wntr.sim.EpanetSimulator(wn)
+        sim = wntr.sim.EpanetSimulator(mywn)
         results=sim.run_sim()
         minp=results.node['pressure'].min().min()
         if (minp-pcrit)<0:
@@ -43,6 +57,8 @@ def calculate_fitness(cs):
 
 def my_observer(population, num_generations, num_evaluations, args):
     best = min(population)
+    bestwn=set_simulation(best.candidate[:5])
+    bestwn.write_inpfile(f"best_{num_generations:03d}.inp")
     print('{0:6} -- {1} : {2}'.format(num_generations, 
                                       best.fitness, 
                                       str(best.candidate)))
