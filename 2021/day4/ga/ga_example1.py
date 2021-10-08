@@ -1,3 +1,12 @@
+"""
+This code was written as a class activity. Not tested!! Do NOT use this as basis of
+further development. 
+Instead use this only as a demonstration on how to use Inspyred library. 
+
+- Assela Pathirana (2021)
+"""
+
+
 from random import Random
 from time import time
 from math import cos
