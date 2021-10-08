@@ -26,17 +26,19 @@ def evaluate(candidates, args):
 
 def calculate_fitness(cs):
     fit = sum( [ x*y*50 for x,y in zip(cs,lens)])
+    # first set the diameters
     for x,y in zip(ids, cs):
-        wn.get_link(x).diameter=y 
-        try:
-            sim = wntr.sim.EpanetSimulator(wn)
-            results=sim.run_sim()
-            minp=results.node['pressure'].min().min()
-            if (minp-pcrit)<0:
-                fit=fit+100000000000*(-1)*(minp-pcrit)
-        except:
-            print("A problem at ", cs)
-            fit=sys.float_info.max
+        wn.get_link(x).diameter=y
+    # then try to run the model 
+    try:
+        sim = wntr.sim.EpanetSimulator(wn)
+        results=sim.run_sim()
+        minp=results.node['pressure'].min().min()
+        if (minp-pcrit)<0:
+            fit=fit+100000000000*(-1)*(minp-pcrit)
+    except:
+        print("A problem at ", cs)
+        fit=sys.float_info.max
     return fit
 
 def my_observer(population, num_generations, num_evaluations, args):
