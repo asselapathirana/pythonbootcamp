@@ -31,7 +31,7 @@ There is another open source IDE that comes standard with WinPython [VS Code](ht
 I interchangeably use both VS Code and Spyder depending on my programming task. If I am doing some data exploration or other 'exploratory' type coding, then Spyder with its IPython interactive interpreter works better for me. On the other hand, for a more involved, statured programming project (A software tool, a model or a web application) my go-to tool is VS Code (with python shell). This latter choice is largely influenced by better, debugging tools. 
 
 
-### Tutorials and Courses
+## Tutorials and Courses
 First off, I highly recommend the method of on-demand, web-search-based learning. I will follow this 'method' during my classes. Of course, you need some 'tutorial' type guidance in the very beginning. But in my opinion, the sooner you wean yourself from that the better! 
 
 Having said that, if you need structured course/tutorial type instructions here are some resources (As of the time of writing, these resources were free):
@@ -43,11 +43,11 @@ Having said that, if you need structured course/tutorial type instructions here 
 4. [Learn Python 3.6 for Total Beginners](https://www.udemy.com/course/python-3-for-total-beginners/?LSNPUBID=JVFxdTr9V80&ranEAID=JVFxdTr9V80&ranMID=39197&ranSiteID=JVFxdTr9V80-fTrDC4an8C6VBGoPIxrpOg)
 5. [Learn Python 3 From Scratch -- Python for Absolute Beginners](https://www.udemy.com/course/learn-python-3-from-scratch-python-for-absolute-beginners/)
 
-#### And after you finish this course
+### And after you finish this course
 
 1. [Dive into Python 3](http://diveintopython3.problemsolving.io/) 
 
-### Background
+## Background
 
 1. Early years of python: [https://www.youtube.com/watch?v=xLVxoz-mQFs](https://www.youtube.com/watch?v=xLVxoz-mQFs)
 2. Coding style and mastering python - real python courses [https://realpython.com/intermediate-python/]
