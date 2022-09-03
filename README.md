@@ -1,4 +1,4 @@
-# Python Bootcamp :  2021 run
+# Python Bootcamp:  2022 run
 This repo provides some of the code, data and information used during the Python Bootcamp, the course I run every year at IHE-Delft. 
 
 ## Inspiration
@@ -10,31 +10,31 @@ Some python products that may inspire you to learn the language
 ## Installation
 
 ### Python
-Most students use computers running Windows operating system. For them my recommended python distribution is [WinPython](https://winpython.github.io/). 
+Most students use computers running Windows operating system. For them, my recommended python distribution is [WinPython](https://winpython.github.io/). 
 
-As of 2021 we use Python 3.9. Please download the appropriate WinPyton distribution from [this link](https://sourceforge.net/projects/winpython/files/WinPython_3.9/3.9.5.0/Winpython64-3.9.5.0.exe/download)
+As of 2022, we use Python 3.10.5. Please download the appropriate WinPyton distribution from [this link](https://sourceforge.net/projects/winpython/files/WinPython_3.10/3.10.5.0/Winpython64-3.10.5.0.exe/download)
 
-1. Its a big download (~750MB), so, give it time to download. 
+1. It's a big download (~MB), so, give it time to download. 
 2. Double click on the downloaded file
 3. Direct it to an installation directory (e.g. `C:\Python\`)
 4. Complete the installation.
 
 ### But, Anaconda is there, right?
-As of 2021, some of the IHE computers (all of them?) have Anaconda Python distribution installed. You may ask: Why don't we use that? You may. But I prefer to 'officially' use win python in this course. (There are good reasons to do so, we can discuss in the class.) If you know what you are doing, you can also use Anaconda. But to keep things simple, I don't plan to provide help on doing so. Basically you are on your own. 
+As of now, some of the IHE computers (all of them?) have Anaconda Python distribution installed. You may ask: Why don't we use that? You may. But I prefer to 'officially' use WinPython in this course. (There are good reasons to do so, which we can discuss in the class.) If you know what you are doing, you can also use Anaconda. But to keep things simple, I don't plan to provide help in doing so. Basically, you are on your own. 
 
 ### Development Environment
-An Integrated Development Environment (IDE) makes it easy to write Python code. WinPython comes with an excellent open source IDE called [Spyder](https://www.spyder-ide.org/). You can use it. 
+An Integrated Development Environment (IDE) makes it easy to write Python code. WinPython comes with an excellent open-source IDE called [Spyder](https://www.spyder-ide.org/). You can use it. 
 
-There is another open source IDE that comes standard with WinPython [VS Code](https://code.visualstudio.com/). While it is possible for you to install it as a windows program, you don't have to. It comes built in with WinPython. 
+There is another open source IDE that comes standard with WinPython [VS Code](https://code.visualstudio.com/). While you can install it as a windows program, you don't have to. It comes built-in with WinPython. 
 
 *Note for seasoned users:*
-I interchangeably use both VS Code and Spyder depending on my programming task. If I am doing some data exploration or other 'exploratory' type coding, then Spyder with its IPython interactive interpreter works better for me. One the other hand, for a more involved, statured programming project (A software tool, a model or a web application) my go-to tool is VS Code (with python shell). This latter choice is largely influenced by the better debugging tools. 
+I interchangeably use both VS Code and Spyder depending on my programming task. If I am doing some data exploration or other 'exploratory' type coding, then Spyder with its IPython interactive interpreter works better for me. On the other hand, for a more involved, statured programming project (A software tool, a model or a web application) my go-to tool is VS Code (with python shell). This latter choice is largely influenced by better, debugging tools. 
 
 
-### Tutorials and Courses
-First off, I highly recommend the method of on-demand, web-search based learning. I will follow this 'method' during my classes. Of course you need some 'tutorial' type guidance in the very beginning. But in my opinion the sooner you wean yourself from that the better! 
+## Tutorials and Courses
+First off, I highly recommend the method of on-demand, web-search-based learning. I will follow this 'method' during my classes. Of course, you need some 'tutorial' type guidance in the very beginning. But in my opinion, the sooner you wean yourself from that the better! 
 
-Having said that, if you need a structured course/tutorial type instructions here are some resources (As of the time of writing, these resources were free):
+Having said that, if you need structured course/tutorial type instructions here are some resources (As of the time of writing, these resources were free):
 
 1. [Python from the Very Beginning](https://coherentpdf.com/python/index.html)
 1. [A Byte of Python](https://python.swaroopch.com/)
@@ -43,11 +43,11 @@ Having said that, if you need a structured course/tutorial type instructions her
 4. [Learn Python 3.6 for Total Beginners](https://www.udemy.com/course/python-3-for-total-beginners/?LSNPUBID=JVFxdTr9V80&ranEAID=JVFxdTr9V80&ranMID=39197&ranSiteID=JVFxdTr9V80-fTrDC4an8C6VBGoPIxrpOg)
 5. [Learn Python 3 From Scratch -- Python for Absolute Beginners](https://www.udemy.com/course/learn-python-3-from-scratch-python-for-absolute-beginners/)
 
-#### And after you finish this course
+### And after you finish this course
 
 1. [Dive into Python 3](http://diveintopython3.problemsolving.io/) 
 
-### Background
+## Background
 
 1. Early years of python: [https://www.youtube.com/watch?v=xLVxoz-mQFs](https://www.youtube.com/watch?v=xLVxoz-mQFs)
 2. Coding style and mastering python - real python courses [https://realpython.com/intermediate-python/]
