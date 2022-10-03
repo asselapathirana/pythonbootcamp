@@ -24,14 +24,8 @@ for val in lines:
 #how many 24 blocks do I have?
 nb=int(len(rain)/24)
 print(nb)
-dailyrain=[]
-for day in range(nb):
-    sum=0.0
-    for hour in range(24):
-        sum=sum+rain[day*24+hour]
-    dailyrain.append(sum)
-
-print(dailyrain)
+dailyblocks=list(zip(*[iter(rain)]*24))
+dailyrain=[sum(x) for x in dailyblocks]
 maxdr=max(dailyrain)
 print(maxdr)
     
