@@ -12,7 +12,7 @@ Some python products that may inspire you to learn the language
 ### Python
 Most students use computers running Windows operating system. For them, my recommended python distribution is [WinPython](https://winpython.github.io/). 
 
-As of 2022, we use Python 3.10.5. Please download the appropriate WinPyton distribution from [this link](https://sourceforge.net/projects/winpython/files/WinPython_3.10/3.10.5.0/Winpython64-3.10.5.0.exe/download)
+As of 2022, we use Python 3.9.10.0 Please download the appropriate WinPyton distribution from [this link]( https://sourceforge.net/projects/winpython/files/WinPython_3.9/3.9.10.0/Winpython64-3.9.10.0.exe/download)
 
 1. It's a big download (~MB), so, give it time to download. 
 2. Double click on the downloaded file
@@ -25,7 +25,11 @@ As of now, some of the IHE computers (all of them?) have Anaconda Python distrib
 ### Development Environment
 An Integrated Development Environment (IDE) makes it easy to write Python code. WinPython comes with an excellent open-source IDE called [Spyder](https://www.spyder-ide.org/). You can use it. 
 
-There is another open source IDE that comes standard with WinPython [VS Code](https://code.visualstudio.com/). While you can install it as a windows program, you don't have to. It comes built-in with WinPython. 
+There is another open source IDE that comes standard with WinPython [VS Code](https://code.visualstudio.com/). You can either 
+1. Install it on windows (Just search for Visual Studio Code and download to install) or
+2. Install it together with your Winpython installation
+
+Our preferred way is (2) above. Download the compressed version of visual studio from [here](https://code.visualstudio.com/sha/download?build=stable&os=win32-x64-archive) and extract it to `<your winpython directory>\t\vscode\` directory (e.g. `C:\python\WPy64-39100\t\vscode`). If you do this successfully, then you can click on the file `"C:\_NO_INSTALL\python\WPy64-39100\VS Code.exe"` to start VS Code!
 
 *Note for seasoned users:*
 I interchangeably use both VS Code and Spyder depending on my programming task. If I am doing some data exploration or other 'exploratory' type coding, then Spyder with its IPython interactive interpreter works better for me. On the other hand, for a more involved, statured programming project (A software tool, a model or a web application) my go-to tool is VS Code (with python shell). This latter choice is largely influenced by better, debugging tools. 
