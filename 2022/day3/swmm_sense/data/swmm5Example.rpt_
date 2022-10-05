@@ -1,0 +1,27 @@
+
+  OWA STORM WATER MANAGEMENT MODEL - VERSION v5.1.14 (OWA 2022-07-31)
+  --------------------------------------------------------------
+
+  
+  ERROR 211: invalid number $IMP at line 55 of [SUBCATCHMENT] section:
+  A2               Gage1            J4               96.9     $IMP    1000     4.13     0                        
+
+  
+  ERROR 211: invalid number $IMP at line 56 of [SUBCATCHMENT] section:
+  A1               Gage1            J1               33.8     $IMP    1000     4.13     0                        
+
+  
+  ERROR 211: invalid number $IMP at line 57 of [SUBCATCHMENT] section:
+  A3               Gage1            J3               50.7     $IMP    1000     4.13     0                        
+
+  
+  ERROR 211: invalid number $IMP at line 58 of [SUBCATCHMENT] section:
+  A4               Gage1            J10              30.0     $IMP    1000     4.13     0                        
+
+  
+  ERROR 211: invalid number $IMP at line 59 of [SUBCATCHMENT] section:
+  A5               Gage1            J9               25.5     $IMP    1000     4.13     0                        
+
+  
+  ERROR 211: invalid number $IMP at line 60 of [SUBCATCHMENT] section:
+  E1               Gage1            J8               34.9     $IMP     1000     1.86     0                        
