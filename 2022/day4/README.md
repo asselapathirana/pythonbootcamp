@@ -5,3 +5,6 @@
 ## Intro to neural networks
 
 [Artificial Neural Networks Explained](https://www.youtube.com/watch?v=bfmFfD2RIcg)
+
+## Recurrent neural networks or RNN
+[Recurrent Neural network Explained](https://www.youtube.com/watch?v=LHXXI4-IEns&t=61s)
