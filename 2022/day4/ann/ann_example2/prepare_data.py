@@ -14,6 +14,8 @@ interpolated.plot()
 # 
 def parser2(x):
 	return datetime.strptime(x, '%m/%d/%Y %H:%M') # water levels are measured in the daytime. Due to lack of information, let's assume 10:00
+
+
 dsl=pd.read_csv("./data/sea_level.txt", parse_dates=[[0,1]], sep='\t', header=None).set_index('0_1')
 rlv=pd.read_csv("./data/river_level.txt", parse_dates=[[0,1]], sep='\t', header=None).set_index('0_1')
 res=interpolated.merge(dsl, left_index=True, right_index=True).merge(rlv, left_index=True, right_index=True)
