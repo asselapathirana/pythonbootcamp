@@ -1,4 +1,4 @@
-# Python Bootcamp:  2022 run
+# Python Bootcamp:  2023 run
 This repo provides some of the code, data and information used during the Python Bootcamp, the course I run every year at IHE-Delft. 
 
 ## Inspiration
@@ -6,20 +6,19 @@ Some python products that may inspire you to learn the language
 1. Python web applications that I have developed: [https://assela.pathirana.net/index.php?title=Webapps_with_python](https://assela.pathirana.net/index.php?title=Webapps_with_python)
 2. Python can be used to create, publication-ready, informative and nice-looking graphs: [https://python-graph-gallery.com/](https://python-graph-gallery.com/)
 
-
 ## Installation
-
+You need to install python (we use WinPython) and a Integrated Development Environment - IDE (we use VS CODE). See below for details. 
 ### Python
 Most students use computers running Windows operating system. For them, my recommended python distribution is [WinPython](https://winpython.github.io/). 
 
-As of 2022, we use Python 3.9.10.0 Please download the appropriate WinPyton distribution from [this link]( https://sourceforge.net/projects/winpython/files/WinPython_3.9/3.9.10.0/Winpython64-3.9.10.0.exe/download)
+As of 2023, we use Python 3.9.10.0 Please download the appropriate WinPyton distribution from [this link]( https://sourceforge.net/projects/winpython/files/WinPython_3.9/3.9.10.0/Winpython64-3.9.10.0.exe/download)
 
 1. It's a big download (~MB), so, give it time to download. 
 2. Double click on the downloaded file
 3. Direct it to an installation directory (e.g. `C:\Python\`)
 4. Complete the installation.
 
-### But, Anaconda is there, right?
+#### But, Anaconda is there, right?
 As of now, some of the IHE computers (all of them?) have Anaconda Python distribution installed. You may ask: Why don't we use that? You may. But I prefer to 'officially' use WinPython in this course. (There are good reasons to do so, which we can discuss in the class.) If you know what you are doing, you can also use Anaconda. But to keep things simple, I don't plan to provide help in doing so. Basically, you are on your own. 
 
 ### Development Environment
@@ -54,7 +53,7 @@ Having said that, if you need structured course/tutorial type instructions here 
 ## Background
 
 1. Early years of python: [https://www.youtube.com/watch?v=xLVxoz-mQFs](https://www.youtube.com/watch?v=xLVxoz-mQFs)
-2. Coding style and mastering python - real python courses [https://realpython.com/intermediate-python/]
+2. Coding style and mastering python - real python courses [https://realpython.com/intermediate-python/](https://realpython.com/intermediate-python/)
 
 
 
