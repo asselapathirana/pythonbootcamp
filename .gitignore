@@ -1,4 +1,7 @@
 optiUnits*
+*.rpt
+*.bin
+*.out
 # project specific details
 temp*
 ~$*
