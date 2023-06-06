@@ -14,7 +14,7 @@ def fitness_function(x):
     num_generations - the number of generations to evolve the population
     returns the best solution evolved"""
 def evolutionary_strategy(fitness_function, num_variables, population_size, num_generations):
-    # Initialize the population
+    # Initialize the population randomly
     population = np.random.uniform(low=-5.0, high=5.0, size=(population_size, num_variables))
 
     for generation in range(num_generations):
@@ -27,7 +27,7 @@ def evolutionary_strategy(fitness_function, num_variables, population_size, num_
 
         # Create the next generation
         next_generation = []
-        for _ in range(population_size):
+        for x in range(population_size):
             parent_indices = np.random.choice(range(len(elite_population)), size=2)
             parents = elite_population[parent_indices]
             child = np.mean(parents, axis=0) + np.random.normal(scale=0.1, size=num_variables)
@@ -45,8 +45,8 @@ def evolutionary_strategy(fitness_function, num_variables, population_size, num_
 
 # Example usage
 num_variables = 5
-population_size = 50
-num_generations = 100
+population_size = 100
+num_generations = 500
 
 best_solution = evolutionary_strategy(fitness_function, num_variables, population_size, num_generations)
 print("Best solution:", best_solution)
