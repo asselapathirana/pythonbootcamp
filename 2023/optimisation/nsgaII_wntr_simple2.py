@@ -105,7 +105,7 @@ def evaluate(factors, number):
     
     # now save the files (so that we can examine them later too!)
     inpname=f'{outputd}{os.sep}CANDIDATE_{number:03d}.inp'
-    wn.write_inpfile(inpname)
+    wntr.network.io.write_inpfile(wn, inpname)
     # write objective values to the result file
     with open(resfile,'a') as ff:
         ff.write(TBL.format(number,inpname, "{:.9f}".format(cost), '{:.9f}'.format(1-adf)))

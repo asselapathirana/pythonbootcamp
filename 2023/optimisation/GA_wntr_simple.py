@@ -38,11 +38,9 @@
 """
    
 from gc import callbacks
-import numpy as np
 import wntr
-from pb.display_helper import  MOGraphMonitor
 from pymoo.core.problem import ElementwiseProblem
-from pymoo.algorithms.moo.nsga2 import NSGA2
+from pymoo.algorithms.soo.nonconvex.ga import GA
 from pymoo.operators.sampling.rnd import FloatRandomSampling
 from pymoo.operators.crossover.sbx import SBX
 from pymoo.operators.mutation.pm import PM
@@ -54,13 +52,15 @@ from pb import display_helper
 # Following are GLOBAL variables. 
 # It is not a good practice to have too many global variables 
 # In fact good program design allows to avoid them (almost) fully. 
-valrange=[.1, 1.0] # range of each variables? 
+valrange=[.05, 1.0] # range of each variables? 
 outputd="output" # directory to write output to 
-inpfile='./data/Net1.inp'
+inpfile='./data/Net1x.inp'
 # list ids of pipes to change
-pipes_to_change = ['11', '12', '111', '112', '113', '21', '22', '121', '122', '31']
+pipes_to_change = ['10', '11', '12', '21', '22', '31', '111', '112', '113']
 NVARS = len(pipes_to_change) # how many variables do you want to change
-
+MINADF=0.75 # minimum ADF value to be considered
+# pentalty to be added to cost if ADF is less than MINADF
+LN=1.e12
 resfile='{0}{1}results.txt'.format(outputd,os.sep) # results file
 TBL="{:>10}{:>25} {:>25} {:>25}\n" # nice printing
 # original diameters of the pipes
@@ -82,7 +82,10 @@ def mygenerator(random, args):
     return [random.uniform(*valrange) for x in range(NVARS)]
 
 def evaluate(factors, number):
-    """Given a list of diameters, how to calculate the two objective functions"""
+    """Given a list of diameters, a single objective function is evaluated.
+        objective: minimize operational cost with subject to a constraint on ADF 
+        if ADF < minADF, we add a penalty to the cost function (so that 'cost' will be very high. )
+    """
     wn = wntr.network.WaterNetworkModel(inpfile) # open the input file
     # convert the variable to a diameter value
     vals = [a*b for a,b in zip(factors, orig_diam)] 
@@ -90,10 +93,10 @@ def evaluate(factors, number):
     for id, diam in zip(pipes_to_change, vals):
         wn.get_link(id).diameter=diam 
     # now create a simulation using PDD mode
-    wn.options.hydraulic.demand_model = 'PDD'
-    sim = wntr.sim.WNTRSimulator(wn)
+    wn.options.hydraulic.demand_model = 'PDA'
+    sim = wntr.sim.EpanetSimulator(wn)
     # slacken the convergence criteria a bit - to save some time
-    results = sim.run_sim(solver_options=dict(MAXITER=2000, TOL=1.e-2), convergence_error=False)
+    results = sim.run_sim(version=2.2)# solver_options=dict(MAXITER=2000, TOL=1.e-2), convergence_error=False)
     if (results.error_code==2):
             print ("\nHydrfaulic analysis failed to converge!\n")
     # objective 1 is : annualized cost in US$/year
@@ -103,7 +106,7 @@ def evaluate(factors, number):
     demand = results.node['demand'][wn.junction_name_list]
     #objective 2 is 1-adf
     adf = demand.sum().sum()/expected_demand.sum().sum()
-    adf=1 if adf > 1.0 else adf # Remove > 1 adf (sometimes it can happen!)
+    #adf=1 if adf > 1.0 else adf # Remove > 1 adf (sometimes it can happen!)
     
     # now save the files (so that we can examine them later too!)
     inpname=f'{outputd}{os.sep}CANDIDATE_{number:03d}.inp'
@@ -111,7 +114,8 @@ def evaluate(factors, number):
     # write objective values to the result file
     with open(resfile,'a') as ff:
         ff.write(TBL.format(number,inpname, "{:.9f}".format(cost), '{:.9f}'.format(1-adf)))
-    return cost, 1-adf
+    LNADF= 0.0 if adf > MINADF else LN*(MINADF-adf)
+    return cost + LNADF
 
 
 def write_heading():
@@ -123,7 +127,7 @@ class PipeProblem(ElementwiseProblem):
 
     def __init__(self):
         super().__init__(n_var=NVARS,
-                         n_obj=2,
+                         n_obj=1,
                          n_ieq_constr=0,
                          xl=valrange[0],
                          xu=valrange[1])
@@ -140,17 +144,12 @@ def main(prng=None, display=False):
     clean()
     write_heading()
     # run! 
-    termination = get_termination("n_gen", 25)
+    termination = get_termination("n_gen", 200)
     problem=PipeProblem()
-    algorithm = NSGA2(
+    algorithm = GA(
         pop_size=40,
-        n_offsprings=15,
-        sampling=FloatRandomSampling(),
-        crossover=SBX(prob=0.9, eta=15),
-        mutation=PM(eta=20),
-        eliminate_duplicates=True
         )
-    monitor=display_helper.MOGraphMonitor()
+    monitor=display_helper.SOGraphMonitor()
     res = minimize(problem,
                algorithm,
                termination,
