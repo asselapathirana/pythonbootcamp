@@ -135,6 +135,7 @@ class PipeProblem(ElementwiseProblem):
 
     def _evaluate(self, x, out, *args, **kwargs):
         self.n+=1
+        print(f"Legth of x is {len(x)} and x is {x}")
         out["F"] = evaluate(x, self.n)
         #out["G"] = [x-valrange[0],valrange[1]-x] 
 
@@ -144,7 +145,7 @@ def main(prng=None, display=False):
     clean()
     write_heading()
     # run! 
-    termination = get_termination("n_gen", 200)
+    termination = get_termination("n_eval", 200)
     problem=PipeProblem()
     algorithm = GA(
         pop_size=40,

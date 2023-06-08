@@ -23,13 +23,12 @@ class leastSquare(Problem):
         super().__init__(n_var=10, n_obj=1, xl=-5, xu=5)
 
     def _evaluate(self, x, out, *args, **kwargs):
-        # important: here x is not a single solution but a set of solutions in a 2 dimensinoal array. 
-        # So we need to use axis=1 to sum the squares of each solution.
-        # e.g. out['F']=np.sum((x) ** 2, axis=1)
-        # to make it easy to understand, I have used a for loop to calculate the sum of squares of each solution.
-        # You can use the above line to replace the for loop.
-        # out is the dictionary storing the fitness (and constraint) values. We don't have constraints in this problem 
-        # So, we assign the fitness of the set of solutions to out['F']
+        """important: here x is not a single solution but a set of solutions in a 2 dimensinoal array. 
+        So we need to use axis=1 to sum the squares of each solution.
+        e.g. out['F']=np.sum((x) ** 2, axis=1)
+        to make it easy to understand, I have used a for loop to calculate the sum of squares of each solution.
+        You can use the above line to replace the for loop.
+        """
         out['F'] = np.zeros(x.shape[0]) # The length of out['F'] is the number of solutions in x (x.shape[0]) 
         for i in range(x.shape[0]):
             out['F'][i]=np.sum((x[i]) ** 2)
