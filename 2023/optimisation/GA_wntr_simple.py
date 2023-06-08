@@ -36,10 +36,11 @@
        
     .. author:: Assela Pathirana <assela@pathirana.net>
 """
-   
+
+import numpy as np
 from gc import callbacks
 import wntr
-from pymoo.core.problem import ElementwiseProblem
+from pymoo.core.problem import Problem
 from pymoo.algorithms.soo.nonconvex.ga import GA
 from pymoo.operators.sampling.rnd import FloatRandomSampling
 from pymoo.operators.crossover.sbx import SBX
@@ -52,7 +53,7 @@ from pb import display_helper
 # Following are GLOBAL variables. 
 # It is not a good practice to have too many global variables 
 # In fact good program design allows to avoid them (almost) fully. 
-valrange=[.05, 1.0] # range of each variables? 
+valrange=[.1, 1.0] # range of each variables? 
 outputd="output" # directory to write output to 
 inpfile='./data/Net1x.inp'
 # list ids of pipes to change
@@ -81,7 +82,7 @@ def mygenerator(random, args):
     """Generator"""
     return [random.uniform(*valrange) for x in range(NVARS)]
 
-def evaluate(factors, number):
+def evaluate(factors, number, write=False):
     """Given a list of diameters, a single objective function is evaluated.
         objective: minimize operational cost with subject to a constraint on ADF 
         if ADF < minADF, we add a penalty to the cost function (so that 'cost' will be very high. )
@@ -108,12 +109,13 @@ def evaluate(factors, number):
     adf = demand.sum().sum()/expected_demand.sum().sum()
     #adf=1 if adf > 1.0 else adf # Remove > 1 adf (sometimes it can happen!)
     
-    # now save the files (so that we can examine them later too!)
-    inpname=f'{outputd}{os.sep}CANDIDATE_{number:03d}.inp'
-    wntr.network.io.write_inpfile(wn, inpname)
-    # write objective values to the result file
-    with open(resfile,'a') as ff:
-        ff.write(TBL.format(number,inpname, "{:.9f}".format(cost), '{:.9f}'.format(1-adf)))
+    if write:
+        # now save the files (so that we can examine them later too!)
+        inpname=f'{outputd}{os.sep}CANDIDATE_{number:03d}.inp'
+        wntr.network.io.write_inpfile(wn, inpname)
+        # write objective values to the result file
+        with open(resfile,'a') as ff:
+            ff.write(TBL.format(number,inpname, "{:.9f}".format(cost), '{:.9f}'.format(1-adf)))
     LNADF= 0.0 if adf > MINADF else LN*(MINADF-adf)
     return cost + LNADF
 
@@ -123,7 +125,7 @@ def write_heading():
     with open(resfile, 'w+') as ff:
         ff.write(TBL.format("Number","INP file", "Cost (US$/y)", "(1-ADF)"))    
 
-class PipeProblem(ElementwiseProblem):
+class PipeProblem(Problem):
 
     def __init__(self):
         super().__init__(n_var=NVARS,
@@ -135,9 +137,11 @@ class PipeProblem(ElementwiseProblem):
 
     def _evaluate(self, x, out, *args, **kwargs):
         self.n+=1
-        print(f"Legth of x is {len(x)} and x is {x}")
-        out["F"] = evaluate(x, self.n)
-        #out["G"] = [x-valrange[0],valrange[1]-x] 
+        out['F'] = np.zeros(x.shape[0]) # The length of out['F'] is the number of solutions in x (x.shape[0]) 
+        for i in range(x.shape[0]):
+            out['F'][i]=evaluate(x[i], self.n, write=False)
+        minindex=np.argmin(out['F'])
+        evaluate(x[minindex], self.n, write=True) # write the best solution to the file .
 
 
 
@@ -145,7 +149,7 @@ def main(prng=None, display=False):
     clean()
     write_heading()
     # run! 
-    termination = get_termination("n_eval", 200)
+    termination = get_termination("n_gen", 200)
     problem=PipeProblem()
     algorithm = GA(
         pop_size=40,
